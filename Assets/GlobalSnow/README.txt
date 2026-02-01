@@ -50,9 +50,6 @@ Of course, all updates of Global Snow will be eventually available on the Asset 
 Version history
 ---------------
 
-Version 11.0
-- Added subsurface scattering option
-
 Version 10.2
 - Added support for Unity 6.2
 
