@@ -33,7 +33,6 @@
 	float4    _GS_SnowData4;    // x = footprint scale, y = footprint obscurance, z = snow normals strength, w = minimum altitude for terrain including scattering
 	float4    _GS_SnowData5;    // x = slope threshold, y = slope sharpness, z = slope noise, w = noise scale
 	float4    _GS_SnowData6;    // x = _Alpha, y = _Smoothness, z = altitude blending, w = snow thickness
-	float4    _GS_SnowData7;    // xyz = subsurface scattering color (intensity applied)
 	half4    _GS_SnowTint;
 
 	float _GS_ExclusionBias;
@@ -67,8 +66,6 @@
 	#define SNOW_SMOOTHNESS _GS_SnowData6.y
 	#define SNOW_ALTITUDE_BLENDING _GS_SnowData6.z
 	#define SNOW_THICKNESS _GS_SnowData6.w
-
-	#define SNOW_SSS_COLOR _GS_SnowData7.xyz
 
     #if GLOBALSNOW_COVERAGE_MASK
 		TEXTURE2D(_GS_DepthMask);
@@ -356,14 +353,6 @@ float3 EncodeSceneNormal(float3 normal) {
 			snowAlbedo *= saturate (1.0 - diff.a * SNOW_OCCLUSION);
 		#endif
 		snowAlbedo *= SNOW_BRIGHTNESS;
-
-		#if !GLOBALSNOW_FLAT_SHADING
-			// Subsurface Scattering - light bleeding through snow
-			float3 viewDir = normalize(_WorldSpaceCameraPos - worldPos);
-			float VdotL = saturate(dot(viewDir, _GS_SunDir.xyz));
-			float subsurface = VdotL * VdotL;
-			snowAlbedo += subsurface * SNOW_SSS_COLOR;
-		#endif
 
 		outAlbedo = SAMPLE_TEXTURE2D_X_LOD(_GS_GBuffer0Copy, sampler_PointClamp, i.uv, 0);
 		outAlbedo.rgb = lerp(outAlbedo.rgb, snowAlbedo, snowCover);

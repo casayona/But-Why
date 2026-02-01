@@ -38,7 +38,7 @@ namespace GlobalSnowEffect {
         SerializedProperty snowdustIntensity, snowdustVerticalOffset;
         SerializedProperty cameraFrost, cameraFrostIntensity, cameraFrostSpread, cameraFrostDistortion, cameraFrostTintColor;
         SerializedProperty terrainMarksTextureSize, terrainMarksStepMaxDistance, grassCoverage;
-        SerializedProperty showCoverageGizmo, smoothness, subsurfaceScattering, subsurfaceScatteringColor, preserveGI, minimumGIAmbient, snowAmount, altitudeBlending;
+        SerializedProperty showCoverageGizmo, smoothness, preserveGI, minimumGIAmbient, snowAmount, altitudeBlending;
         SerializedProperty maskEditorEnabled, maskTextureResolution, maskBrushMode, maskBrushWidth, maskBrushFuzziness, maskBrushOpacity;
 
         Texture2D _headerTexture;
@@ -68,8 +68,6 @@ namespace GlobalSnowEffect {
             showSnowInSceneView = serializedObject.FindProperty("_showSnowInSceneView");
             showCoverageGizmo = serializedObject.FindProperty("_showCoverageGizmo");
             smoothness = serializedObject.FindProperty("_smoothness");
-            subsurfaceScattering = serializedObject.FindProperty("_subsurfaceScattering");
-            subsurfaceScatteringColor = serializedObject.FindProperty("_subsurfaceScatteringColor");
             preserveGI = serializedObject.FindProperty("_preserveGI");
             minimumGIAmbient = serializedObject.FindProperty("_minimumGIAmbient");
             snowAmount = serializedObject.FindProperty("_snowAmount");
@@ -391,14 +389,6 @@ namespace GlobalSnowEffect {
                 EditorGUILayout.PropertyField(altitudeBlending, new GUIContent("Altitude Blending", "Defines vertical gradient length for snow blending."));
                 EditorGUILayout.PropertyField(snowTint, new GUIContent("Snow Tint", "Snow tint color."));
                 EditorGUILayout.PropertyField(smoothness, new GUIContent("Smoothness", "Snow PBR smoothness."));
-                if (snowQuality.intValue != (int)SnowQuality.FlatShading) {
-                    EditorGUILayout.PropertyField(subsurfaceScattering, new GUIContent("Subsurface Scattering", "Intensity of subsurface scattering effect. Simulates light penetrating through snow."));
-                    if (subsurfaceScattering.floatValue > 0) {
-                        EditorGUI.indentLevel++;
-                        EditorGUILayout.PropertyField(subsurfaceScatteringColor, new GUIContent("Color", "Tint color for subsurface scattering effect."));
-                        EditorGUI.indentLevel--;
-                    }
-                }
                 EditorGUILayout.PropertyField(maxExposure, new GUIContent("Max Exposure", "Controls maximum snow brightness."));
                 EditorGUILayout.PropertyField(preserveGI, new GUIContent("Preserve Global Illumination", "Keeps GI on added snow. Disabling this option improves performance."));
                 EditorGUILayout.PropertyField(minimumGIAmbient, new GUIContent("Minimum Ambient Intensity"));

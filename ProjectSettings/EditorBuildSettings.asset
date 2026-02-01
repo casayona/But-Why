@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/ithappy/Animals_FREE/Scenes/URP_Scenes/Demonstration.unity
+    path: Assets/_gameAssets/Scenes/Game.unity
     guid: 76a8115a92c17b64caed468795d09d5a
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 9cad26f088be2b244917c126117d5183, type: 3}
