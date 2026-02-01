@@ -107,12 +107,6 @@ namespace GlobalSnowEffect {
         [Range(0f, 1f)]
         public float smoothness = 0.9f;
 
-        [Range(0f, 1f)]
-        public float subsurfaceScattering = 0.25f;
-
-        [ColorUsage(showAlpha: false)]
-        public Color subsurfaceScatteringColor = new Color(0.85f, 0.92f, 1f);
-
         public bool preserveGI;
 
         [Range(0f, 2f)]
@@ -186,8 +180,6 @@ namespace GlobalSnowEffect {
             snow.snowdustVerticalOffset = snowdustVerticalOffset;
             snow.maxExposure = maxExposure;
             snow.smoothness = smoothness;
-            snow.subsurfaceScattering = subsurfaceScattering;
-            snow.subsurfaceScatteringColor = subsurfaceScatteringColor;
             snow.snowAmount = snowAmount;
             snow.cameraFrost = cameraFrost;
             snow.cameraFrostIntensity = cameraFrostIntensity;
@@ -239,8 +231,6 @@ namespace GlobalSnowEffect {
             snowdustVerticalOffset = snow.snowdustVerticalOffset;
             maxExposure = snow.maxExposure;
             smoothness = snow.smoothness;
-            subsurfaceScattering = snow.subsurfaceScattering;
-            subsurfaceScatteringColor = snow.subsurfaceScatteringColor;
             snowAmount = snow.snowAmount;
             cameraFrost = snow.cameraFrost;
             cameraFrostIntensity = snow.cameraFrostIntensity;
@@ -295,8 +285,6 @@ namespace GlobalSnowEffect {
             gs.snowdustVerticalOffset = Mathf.Lerp(profile1.snowdustVerticalOffset, profile2.snowdustVerticalOffset, t);
             gs.maxExposure = Mathf.Lerp(profile1.maxExposure, profile2.maxExposure, t);
             gs.smoothness = Mathf.Lerp(profile1.smoothness, profile2.smoothness, t);
-            gs.subsurfaceScattering = Mathf.Lerp(profile1.subsurfaceScattering, profile2.subsurfaceScattering, t);
-            gs.subsurfaceScatteringColor = Color.Lerp(profile1.subsurfaceScatteringColor, profile2.subsurfaceScatteringColor, t);
             gs.snowAmount = Mathf.Lerp(profile1.snowAmount, profile2.snowAmount, t);
             gs.cameraFrost = t < 0.5f ? profile1.cameraFrost : profile2.cameraFrost;
             gs.cameraFrostIntensity = Mathf.Lerp(profile1.cameraFrostIntensity, profile2.cameraFrostIntensity, t);

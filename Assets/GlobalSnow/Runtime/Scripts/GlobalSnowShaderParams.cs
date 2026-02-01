@@ -43,7 +43,6 @@ namespace GlobalSnowEffect {
         public static int GlobalSnowData4 = Shader.PropertyToID("_GS_SnowData4");
         public static int GlobalSnowData5 = Shader.PropertyToID("_GS_SnowData5");
         public static int GlobalSnowData6 = Shader.PropertyToID("_GS_SnowData6");
-        public static int GlobalSnowData7 = Shader.PropertyToID("_GS_SnowData7");
         public static int GlobalSnowExclusionBias = Shader.PropertyToID("_GS_ExclusionBias");
         public static int GlobalMinimumGIAmbient = Shader.PropertyToID("_GS_MinimumGIAmbient");
         public static int GlobalSnowTint = Shader.PropertyToID("_GS_SnowTint");

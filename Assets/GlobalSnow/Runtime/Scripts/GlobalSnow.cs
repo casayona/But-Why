@@ -776,33 +776,6 @@ namespace GlobalSnowEffect {
         }
 
         [SerializeField]
-        [Range(0f, 1f)]
-        float _subsurfaceScattering = 0.25f;
-
-        public float subsurfaceScattering {
-            get { return _subsurfaceScattering; }
-            set {
-                if (value != _subsurfaceScattering) {
-                    _subsurfaceScattering = value;
-                    UpdateSnowData7();
-                }
-            }
-        }
-
-        [SerializeField]
-        Color _subsurfaceScatteringColor = new Color(0.85f, 0.92f, 1f);
-
-        public Color subsurfaceScatteringColor {
-            get { return _subsurfaceScatteringColor; }
-            set {
-                if (value != _subsurfaceScatteringColor) {
-                    _subsurfaceScatteringColor = value;
-                    UpdateSnowData7();
-                }
-            }
-        }
-
-        [SerializeField]
         [Range(0f, 2f)]
         float _snowAmount = 1f;
 
@@ -2310,15 +2283,6 @@ namespace GlobalSnowEffect {
             Shader.SetGlobalVector(ShaderParams.GlobalSnowData6, new Vector4(1f - Mathf.Min(_snowAmount, 1f), _smoothness, _altitudeBlending, Mathf.Max(_snowAmount - 1f, 0)));
         }
 
-        void UpdateSnowData7() {
-            float subsurfaceIntensity = _subsurfaceScattering * 2f;
-            Shader.SetGlobalVector(ShaderParams.GlobalSnowData7, new Vector4(
-                _subsurfaceScatteringColor.r * subsurfaceIntensity,
-                _subsurfaceScatteringColor.g * subsurfaceIntensity,
-                _subsurfaceScatteringColor.b * subsurfaceIntensity,
-                0f));
-        }
-
         /// <summary>
         /// In case Sun is not set, locate any directional light on the scene.
         /// </summary>
@@ -2399,7 +2363,6 @@ namespace GlobalSnowEffect {
             UpdateSnowData4();
             UpdateSnowData5();
             UpdateSnowData6();
-            UpdateSnowData7();
 
             Shader.SetGlobalFloat(ShaderParams.GlobalMinimumGIAmbient, _minimumGIAmbient);
             Shader.SetGlobalFloat(ShaderParams.GlobalSnowExclusionBias, _exclusionBias);
