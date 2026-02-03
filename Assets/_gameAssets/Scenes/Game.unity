@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: b791dac84b092d1418eeb8b9a73b3f07, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 860a66ca4259b384f9ec01b687f71c3c, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -136,7 +136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1918218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -793,7 +793,7 @@ Transform:
   m_GameObject: {fileID: 212579702}
   serializedVersion: 2
   m_LocalRotation: {x: -0.0000000111111405, y: 0.95380336, z: -0.30043158, w: -0.0000000352754}
-  m_LocalPosition: {x: 0, y: 3.6158633, z: 0.97367454}
+  m_LocalPosition: {x: 0, y: 2.4768634, z: 0.97367454}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1067,7 +1067,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 400, y: 200}
+  m_AnchoredPosition: {x: 343.3, y: 200}
   m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &634649814
@@ -1193,7 +1193,7 @@ GameObject:
   - component: {fileID: 681378294}
   - component: {fileID: 681378293}
   m_Layer: 0
-  m_Name: Directional Light (1)
+  m_Name: Directional
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1238,7 +1238,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6509434, g: 0.6509434, b: 0.6509434, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -2172,7 +2172,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: -1.15851134e-10, y: 0.99993694, z: -0.01123368, w: -0.000000010312191}
-  m_LocalPosition: {x: 0, y: 0.7673419, z: -0.06974435}
+  m_LocalPosition: {x: 0, y: -0.37165815, z: -0.06974435}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2371,7 +2371,7 @@ GameObject:
   - component: {fileID: 1012500212}
   - component: {fileID: 1012500211}
   m_Layer: 0
-  m_Name: DialogueTrigger (1)
+  m_Name: DialogueTrigger2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3073,7 +3073,7 @@ Transform:
   m_GameObject: {fileID: 1104351884}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0000000032513199, y: 0.99479395, z: -0.10190682, w: 0.000000031738733}
-  m_LocalPosition: {x: 0, y: 1.1290861, z: -1.1131628}
+  m_LocalPosition: {x: 0, y: -0.009913921, z: -1.1131628}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3350,7 +3350,7 @@ Transform:
   m_GameObject: {fileID: 1250049527}
   serializedVersion: 2
   m_LocalRotation: {x: -1.15851134e-10, y: 0.99993694, z: -0.011233679, w: -0.000000010312189}
-  m_LocalPosition: {x: 0, y: 0.7673419, z: -0.06974435}
+  m_LocalPosition: {x: 0, y: -0.37165815, z: -0.06974435}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3568,24 +3568,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DaySystem
   dayText: {fileID: 634649814}
   dayTextCanvasGroup: {fileID: 2068378713}
-  dayDurationInSeconds: 60
-  textDisplayDuration: 1
+  blackScreenCanvasGroup: {fileID: 2068378713}
   sunLight: {fileID: 681378294}
-  sunColor:
+  sunColorGradient:
     serializedVersion: 2
-    key0: {r: 0.9528302, g: 0.6494526, b: 0.3460751, a: 1}
-    key1: {r: 0.9331577, g: 0.9622642, b: 0.31318974, a: 1}
-    key2: {r: 1, g: 1, b: 1, a: 0}
-    key3: {r: 0.8039216, g: 0.4, b: 0.050980393, a: 0}
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
-    ctime1: 19492
-    ctime2: 30037
-    ctime3: 47786
-    ctime4: 60415
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
     ctime5: 0
     ctime6: 0
     ctime7: 0
@@ -3599,33 +3598,34 @@ MonoBehaviour:
     atime7: 0
     m_Mode: 0
     m_ColorSpace: -1
-    m_NumColorKeys: 5
+    m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  sunIntensity:
+  intensityCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
-      tangentMode: 34
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  skyboxMaterial: {fileID: 2100000, guid: b791dac84b092d1418eeb8b9a73b3f07, type: 2}
+  dayDurationInSeconds: 25
+  timeOfDay: 0.25
 --- !u!4 &1371059010
 Transform:
   m_ObjectHideFlags: 0
@@ -3818,7 +3818,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1587337534}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
   m_Name: 
@@ -4299,9 +4299,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1084717495}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -325.2, y: -227.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 350, y: 100}
   m_SizeDelta: {x: 500, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &1986617286
@@ -4464,7 +4464,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!225 &2068378713
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -5548,13 +5548,16 @@ MonoBehaviour:
   sprintSpeed: 2
   slideSpeed: 15
   rotationSpeed: 100
+  rotationSmoothTime: 0.15
   jumpHeight: 1.5
   normalHeight: 1.8
   slideHeight: 0.6
   normalCenter: {x: 0, y: 0.9, z: 0}
   slideCenter: {x: 0, y: 0.3, z: 0}
+  visualModel: {fileID: 0}
+  leanAmount: 15
+  leanSpeed: 5
   gravity: -19.62
-  mainCamera: {fileID: 963194228}
 --- !u!4 &2230991235909086932
 Transform:
   m_ObjectHideFlags: 0
@@ -6481,7 +6484,7 @@ Transform:
   m_GameObject: {fileID: 4944186722164457339}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -3.2}
+  m_LocalPosition: {x: 0, y: -1.139, z: -3.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6532,13 +6535,16 @@ MonoBehaviour:
   sprintSpeed: 2
   slideSpeed: 3
   rotationSpeed: 100
+  rotationSmoothTime: 0.15
   jumpHeight: 0
   normalHeight: 1.8
   slideHeight: 0.6
   normalCenter: {x: 0, y: 0.9, z: 0}
   slideCenter: {x: 0, y: 0.3, z: 0}
+  visualModel: {fileID: -8679921383154817045, guid: 01395042afce79d4697c1f58d47768ef, type: 3}
+  leanAmount: 15
+  leanSpeed: 5
   gravity: -19.62
-  mainCamera: {fileID: 963194228}
 --- !u!4 &5783325137023749333
 Transform:
   m_ObjectHideFlags: 0

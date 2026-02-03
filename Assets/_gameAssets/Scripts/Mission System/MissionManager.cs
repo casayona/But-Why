@@ -61,7 +61,7 @@ public class MissionManager : MonoBehaviour
         if (currentMissionIndex < dailyMissions.Count)
         {
             missionText.text = "NEW MISSION: " + dailyMissions[currentMissionIndex];
-            missionText.color = Color.white;
+            missionText.color = Color.black;
         }
     }
 }

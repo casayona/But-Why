@@ -8,17 +8,20 @@ public class SleepArea : MonoBehaviour
 
     void Start()
     {
-        daySystem = FindObjectOfType<DaySystem>();
+        // DaySystem'i sahnede bul
+        daySystem = Object.FindAnyObjectByType<DaySystem>();
         if (interactionUI != null) interactionUI.SetActive(false);
     }
 
     void Update()
     {
+        // Eðer içerdeyse ve E'ye basarsa
         if (isInside && Input.GetKeyDown(KeyCode.E))
         {
             if (daySystem != null)
             {
-                daySystem.StartNextDay(); // Fonksiyon ismi eþleþti
+                daySystem.StartNextDay();
+                // Etkileþim yazýsýný uykudayken kapat
                 if (interactionUI != null) interactionUI.SetActive(false);
             }
         }

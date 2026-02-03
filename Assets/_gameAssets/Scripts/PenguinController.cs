@@ -12,7 +12,8 @@ public class PenguinController : MonoBehaviour
     public float walkSpeed = 5f;
     public float sprintSpeed = 10f;
     public float slideSpeed = 15f;
-    public float rotationSpeed = 100f; // Karakterin A/D ile dönme hýzý
+    public float rotationSpeed = 180f; // Saniyedeki dönüþ açýsý
+    public float rotationSmoothTime = 0.15f; // Dönüþün yumuþama süresi
     public float jumpHeight = 1.5f;
 
     [Header("Sliding Settings")]
@@ -21,11 +22,13 @@ public class PenguinController : MonoBehaviour
     public Vector3 normalCenter = new Vector3(0, 0.9f, 0);
     public Vector3 slideCenter = new Vector3(0, 0.3f, 0);
 
+    [Header("Visual Juice (Hissiyat)")]
+    public Transform visualModel; // Karakterin modelini (grafiðini) buraya sürükle
+    public float leanAmount = 15f; // Dönüþlerdeki yatma miktarý
+    public float leanSpeed = 5f;
+
     [Header("Physics")]
     public float gravity = -19.62f;
-
-    [Header("References")]
-    public Transform mainCamera; // Kamera artýk sadece görsel takip için, hareket yönünü etkilemez
 
     private Vector2 moveInput;
     private Vector3 velocity;
@@ -33,13 +36,17 @@ public class PenguinController : MonoBehaviour
     private bool isSliding;
     private float smoothMoveAmount;
 
+    // Yumuþatma için yardýmcý deðiþkenler
+    private float currentRotationVelocity;
+    private float rotationVelocitySmooth;
+    private float currentLeanAngle;
+
     private void Awake()
     {
         inputActions = new PenguinInputs();
         controller = GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
 
-        // Input Atamalarý
         inputActions.PenguinActions.Jump.performed += ctx => Jump();
         inputActions.PenguinActions.Sprint.started += ctx => isSprinting = true;
         inputActions.PenguinActions.Sprint.canceled += ctx => isSprinting = false;
@@ -57,11 +64,7 @@ public class PenguinController : MonoBehaviour
 
         moveInput = inputActions.PenguinActions.Move.ReadValue<Vector2>();
 
-        // 1. DÖNME: A ve D tuþlarý karakteri kendi ekseninde döndürür
-        float rotation = moveInput.x * rotationSpeed * Time.deltaTime;
-        transform.Rotate(0, rotation, 0);
-
-        // 2. HAREKET: W ve S tuþlarý karakterin baktýðý yöne (forward) gitmesini saðlar
+        ApplyRotation();
         MovePlayer();
 
         velocity.y += gravity * Time.deltaTime;
@@ -69,18 +72,30 @@ public class PenguinController : MonoBehaviour
 
         UpdateAnimations();
     }
-    private void FixedUpdate()
+
+    private void ApplyRotation()
     {
-        if (controller.isGrounded && velocity.y < 0)
+        // 1. DÖNÜÞ YUMUÞATMA
+        // moveInput.x (-1, 0, 1) deðerini yumuþak bir hýza çeviriyoruz
+        float targetRotationVelocity = moveInput.x * rotationSpeed;
+        currentRotationVelocity = Mathf.SmoothDamp(currentRotationVelocity, targetRotationVelocity, ref rotationVelocitySmooth, rotationSmoothTime);
+
+        transform.Rotate(0, currentRotationVelocity * Time.deltaTime, 0);
+
+        // 2. GÖRSEL YATMA EFEKTÝ (Lean)
+        // Eðer visualModel atanmýþsa, dönüþ yönüne göre modeli Z ekseninde yatýrýr
+        if (visualModel != null)
         {
-            velocity.y = -2f;
+            float targetLean = -moveInput.x * leanAmount;
+            currentLeanAngle = Mathf.Lerp(currentLeanAngle, targetLean, Time.deltaTime * leanSpeed);
+
+            // Modelin mevcut rotasyonunu bozmadan sadece Z (yatma) eksenini deðiþtiriyoruz
+            visualModel.localRotation = Quaternion.Euler(0, 0, currentLeanAngle);
         }
     }
 
     private void MovePlayer()
     {
-        // Sadece W ve S (Dikey eksen) hareket yönünü belirler
-        // Karakterin transform.forward deðerini kullanarak "baktýðý yöne" gitmesini saðlýyoruz
         Vector3 moveDirection = transform.forward * moveInput.y;
 
         if (moveDirection.magnitude >= 0.1f || isSliding)
@@ -110,7 +125,6 @@ public class PenguinController : MonoBehaviour
 
     private void UpdateAnimations()
     {
-        // Animasyon için sadece ileri-geri (W/S) hareketine bakýyoruz
         float targetMoveAmount = Mathf.Abs(moveInput.y);
         smoothMoveAmount = Mathf.SmoothStep(smoothMoveAmount, targetMoveAmount, Time.deltaTime * 5f);
 
